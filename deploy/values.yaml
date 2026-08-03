@@ -1,0 +1,19 @@
+# Podinfo Helm chart values
+#
+# Podinfo is a lightweight Go microservice used for testing the
+# end-to-end GitOps pipeline:
+#   GitHub App credentials → Argo CD → NGINX Ingress → cert-manager
+#
+# No secrets required — ideal for testing without OpenBao involvement.
+
+replicaCount: 1
+
+nodeSelector:
+  custom.kaas.infomaniak.cloud/node-role: "worker"
+
+service:
+  type: ClusterIP
+  port: 9898
+
+ingress:
+  enabled: false  # managed separately in ingress.yaml

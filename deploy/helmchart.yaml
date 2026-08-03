@@ -1,0 +1,15 @@
+# References the podinfo Helm chart from the official repository.
+# Argo CD uses this to deploy podinfo without a separate HelmRepository resource.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: podinfo-helm
+  namespace: argocd
+spec:
+  source:
+    repoURL: https://stefanprodan.github.io/podinfo
+    chart: podinfo
+    targetRevision: "6.7.0"
+    helm:
+      valueFiles:
+        - values.yaml
